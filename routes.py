@@ -21,11 +21,22 @@ class Base(DeclarativeBase):
 
 
 # model goes here using Flask-SQLAlchemy
+# farm
+class Type(Base):
+    __tablename__ = "farm"
+    farm_id : Mapped[int] = mapped_column(primary_key=True)
+    farm_name: Mapped[str] = mapped_column(String(80))
+    farms : Mapped[list["Item"]] = relationship(back_populates="type")
+
+
+
+# Pigs
 class Item(Base):
     __tablename__ = "pigs"
     pig_id : Mapped[int] = mapped_column(primary_key=True)
     pig_name : Mapped[str] = mapped_column(String(80))
-    farm_id : Mapped[int] = mapped_column(ForeignKey("farm_id"))
+    farm_id : Mapped[int] = mapped_column(ForeignKey("farm.farm_id"))
+    type : Mapped[Type] = relationship(back_populates="farms")
 
 
 # routes go here 

@@ -1,8 +1,8 @@
 {%extends "template.html"%}
 {%block content%}
-<h1>Hello</h1>
+<h1>PIGS!</h1>
 {% for pig in pigs %}
-    <p>{{ pig.pig_id }} : {{ pig.pig_name }}</p>
+    <p> It's name is {{ pig.pig_name }}. {{ pig.pig_name }} is from {{pig.type.farm_name}}</p>
 {% endfor %}
 
 {%endblock%}
